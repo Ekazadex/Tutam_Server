@@ -7,7 +7,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Sesuaikan dengan URL frontend
+    origin: 'https://eka-tutam-client.vercel.app/', // Sesuaikan dengan URL frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
