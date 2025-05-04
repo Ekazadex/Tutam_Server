@@ -1,9 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-const pool = require('./db');
+const { Pool } = require('pg');
 require('dotenv').config();
 
 const app = express();
+
+// Database connection
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 // Middleware
 app.use(cors({

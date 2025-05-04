@@ -5,16 +5,18 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
         require: true,
+        rejectUnauthorized: false
     }
 });
 
 // Test database connection
-pool.query('SELECT NOW()', (err, res) => {
+pool.connect((err, client, release) => {
     if (err) {
-        console.error('Database connection error:', err);
-    } else {
-        console.log('Database connected successfully');
+        console.error('Error connecting to database:', err.stack);
+        return;
     }
+    console.log('Connected to database successfully');
+    release();
 });
 
 module.exports = pool;
